@@ -46,9 +46,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#07090E] px-4 text-white">
       <div className="max-w-md text-center space-y-4">
-        <h1 className="text-xl font-semibold tracking-tight text-white">
-          This page didn't load
-        </h1>
+        <h1 className="text-xl font-semibold tracking-tight text-white">This page didn't load</h1>
         <p className="text-xs text-gray-400">
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
@@ -95,7 +93,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
       { property: "og:site_name", content: "ABTalks" },
-      { property: "og:title", content: "ABTalks | 60-Day Coding Challenge, AI Cohorts & Hackathons" },
+      {
+        property: "og:title",
+        content: "ABTalks | 60-Day Coding Challenge, AI Cohorts & Hackathons",
+      },
       {
         property: "og:description",
         content:
@@ -130,7 +131,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "ABTalks",
           url: "https://www.abtalks.in",
           logo: "https://www.abtalks.in/favicon.png",
-          description: "India's coding community for students to learn, build, and accelerate careers through visible proof of work.",
+          description:
+            "India's coding community for students to learn, build, and accelerate careers through visible proof of work.",
           sameAs: [
             "https://linkedin.com",
             "https://youtube.com",

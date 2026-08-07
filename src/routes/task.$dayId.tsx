@@ -8,7 +8,10 @@ export const Route = createFileRoute("/task/$dayId")({
   head: () => ({
     meta: [
       { title: "What Does an AI System Actually Do? | ABTalks Task" },
-      { name: "description", content: "Submit your solution for Day 1 AI challenge task on ABTalks." },
+      {
+        name: "description",
+        content: "Submit your solution for Day 1 AI challenge task on ABTalks.",
+      },
     ],
   }),
   component: TaskWorkspacePage,
@@ -38,7 +41,6 @@ function TaskWorkspacePage() {
 
   return (
     <div className="min-h-screen bg-[#07090E] pb-24 text-white">
-      
       {/* Top Header Breadcrumb bar matching real site */}
       <div className="border-b border-white/10 bg-[#0C0F1D] px-4 py-3">
         <div className="mx-auto flex max-w-4xl items-center justify-between">
@@ -57,7 +59,6 @@ function TaskWorkspacePage() {
       </div>
 
       <div className="mx-auto max-w-4xl px-4 pt-8 space-y-8">
-        
         {/* Task Brief Container matching real site layout 100% */}
         <div className="rounded-2xl border border-white/10 bg-[#0C0F1D] p-6 sm:p-10 space-y-6">
           <div>
@@ -82,7 +83,8 @@ function TaskWorkspacePage() {
 
             <div>
               <p className="text-gray-300">
-                <span className="font-bold text-white">Real-World Impact:</span> {task.realWorldImpact}
+                <span className="font-bold text-white">Real-World Impact:</span>{" "}
+                {task.realWorldImpact}
               </p>
             </div>
 
@@ -110,11 +112,11 @@ function TaskWorkspacePage() {
         <div className="rounded-2xl border border-white/10 bg-[#0C0F1D] p-6 sm:p-8">
           <h2 className="font-display text-lg font-bold text-white">Submit your solution</h2>
           <p className="mt-1 text-xs text-gray-400">
-            Confirm you completed today's task. GitHub and LinkedIn are optional proof for bonus synergy.
+            Confirm you completed today's task. GitHub and LinkedIn are optional proof for bonus
+            synergy.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-5">
-            
             {/* Confirmation Checkbox */}
             <label className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#121629] p-4 cursor-pointer hover:bg-[#181D35] transition-colors">
               <input
@@ -128,7 +130,9 @@ function TaskWorkspacePage() {
               </span>
             </label>
 
-            <p className="text-[11px] text-gray-400 font-semibold">Add proof (optional, earns more synergy)</p>
+            <p className="text-[11px] text-gray-400 font-semibold">
+              Add proof (optional, earns more synergy)
+            </p>
 
             {/* Optional GitHub Field */}
             <div className="space-y-1.5">
@@ -178,7 +182,6 @@ function TaskWorkspacePage() {
             </button>
           </form>
         </div>
-
       </div>
 
       {/* Celebratory Completion Modal */}
@@ -189,7 +192,9 @@ function TaskWorkspacePage() {
               <Sparkles className="h-8 w-8 animate-pulse" />
             </div>
 
-            <h3 className="font-display text-2xl font-black text-white">Day {dayNumber} Completed! 🎉</h3>
+            <h3 className="font-display text-2xl font-black text-white">
+              Day {dayNumber} Completed! 🎉
+            </h3>
             <p className="text-xs text-gray-300">
               Awesome work! Your proof-of-work submission has been recorded on ABTalks.
             </p>
@@ -211,7 +216,6 @@ function TaskWorkspacePage() {
           </div>
         </div>
       )}
-
     </div>
   );
 }

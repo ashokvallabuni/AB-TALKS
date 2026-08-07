@@ -67,7 +67,8 @@ export const TRACKS: ChallengeTrack[] = [
     title: "Artificial Intelligence",
     status: "Applications open",
     badgeType: "secondary",
-    description: "Build and deploy production AI systems in 60 days. Learn RAG, agents, MCP, and get in front of recruiters.",
+    description:
+      "Build and deploy production AI systems in 60 days. Learn RAG, agents, MCP, and get in front of recruiters.",
     duration: "60 days",
     tags: ["60 days", "AI Systems"],
     ctaText: "Start AI Challenge",
@@ -81,7 +82,8 @@ export const TRACKS: ChallengeTrack[] = [
     title: "Claude AI",
     status: "New",
     badgeType: "accent",
-    description: "Master Claude through focused prompt-engineering tasks and build practical AI workflows.",
+    description:
+      "Master Claude through focused prompt-engineering tasks and build practical AI workflows.",
     duration: "60 days",
     tags: ["60 days", "AI mastery"],
     ctaText: "Join the Claude track",
@@ -95,7 +97,8 @@ export const TRACKS: ChallengeTrack[] = [
     title: "60-Day Coding Challenge",
     status: "Enrolling now",
     badgeType: "primary",
-    description: "One real task every day across AI, Data Science, or Software Engineering. Build a streak and a public portfolio.",
+    description:
+      "One real task every day across AI, Data Science, or Software Engineering. Build a streak and a public portfolio.",
     duration: "60 days",
     tags: ["60 days", "Streak & Portfolio"],
     ctaText: "Start the challenge",
@@ -109,7 +112,8 @@ export const TRACKS: ChallengeTrack[] = [
     title: "Vibe Code Hackathon",
     status: "Registration closed",
     badgeType: "muted",
-    description: "Build anything using AI in 48 hours. Compete solo or with a team of up to three and ship something real.",
+    description:
+      "Build anything using AI in 48 hours. Compete solo or with a team of up to three and ship something real.",
     duration: "48 hours",
     teamSize: "Teams of 1-3",
     tags: ["48 hours", "Teams of 1-3"],
@@ -129,8 +133,10 @@ export const DAILY_TASKS: DailyTask[] = [
     category: "AI",
     level: "Easy",
     estimatedTime: "~45 min",
-    context: "Before you can build AI systems, you need a clear mental picture of how they actually work - input flows in, processing happens, output comes out. No magic.",
-    realWorldImpact: "Engineers who can decompose AI products into clear pipeline stages debug faster, communicate better with teams, and design more reliable systems.",
+    context:
+      "Before you can build AI systems, you need a clear mental picture of how they actually work - input flows in, processing happens, output comes out. No magic.",
+    realWorldImpact:
+      "Engineers who can decompose AI products into clear pipeline stages debug faster, communicate better with teams, and design more reliable systems.",
     whatToDo: [
       "Build a clear mental model of AI pipelines",
       "Map out a simple AI pipeline: input → processing → output",
@@ -152,8 +158,10 @@ export const DAILY_TASKS: DailyTask[] = [
     category: "Claude AI",
     level: "Beginner",
     estimatedTime: "~40 min",
-    context: "Before you can build AI systems with Claude, you need a clear mental picture of how system prompts and context windows shape AI personalities.",
-    realWorldImpact: "Engineers who master Claude prompt engineering design more reliable AI agents and customer assistant workflows.",
+    context:
+      "Before you can build AI systems with Claude, you need a clear mental picture of how system prompts and context windows shape AI personalities.",
+    realWorldImpact:
+      "Engineers who master Claude prompt engineering design more reliable AI agents and customer assistant workflows.",
     whatToDo: [
       "Set up your Claude account and Anthropic API environment",
       "Create a custom system prompt defining an AI mentor persona",
@@ -178,7 +186,8 @@ export const JOBS_LIST: JobListing[] = [
     type: "Full-time",
     mode: "Remote",
     postedDate: "Posted 25 Jul 2026",
-    description: "Looking for a backend Java Developer with strong Data Structures, REST API design, and Spring Boot experience.",
+    description:
+      "Looking for a backend Java Developer with strong Data Structures, REST API design, and Spring Boot experience.",
     requirements: [
       "3+ months internship or personal project proof-of-work",
       "Proficient in Java, Spring Boot, REST APIs",
@@ -193,7 +202,8 @@ export const JOBS_LIST: JobListing[] = [
     type: "Internship",
     mode: "Hybrid",
     postedDate: "Posted 2 Jul 2026",
-    description: "Join Ideacraft to manage digital growth campaigns, developer community events, and public product launches.",
+    description:
+      "Join Ideacraft to manage digital growth campaigns, developer community events, and public product launches.",
     requirements: [
       "Active social presence on LinkedIn or Twitter/X",
       "Strong written communication and content creation skills",
@@ -208,7 +218,8 @@ export const JOBS_LIST: JobListing[] = [
     type: "Full-time",
     mode: "Work from Office",
     postedDate: "Posted 7 Jun 2026",
-    description: "Work directly with ABTalks founders on partnership expansion, student placement ops, and hiring partner management.",
+    description:
+      "Work directly with ABTalks founders on partnership expansion, student placement ops, and hiring partner management.",
     requirements: [
       "MBA Fresher or final year graduate",
       "High energy, problem-solving mindset, public speaking ability",
@@ -222,29 +233,37 @@ export const TESTIMONIALS: Testimonial[] = [
     id: "t1",
     name: "Vivek",
     role: "IT Leader · 20+ years of industry experience",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
-    quote: "I wasn't looking for another certificate. I was looking for a new way of thinking. With over 20 years in IT leadership, stepping into Generative AI made me feel like a beginner again, and honestly that was the best part. The challenge may have ended, but my AI journey has just begun.",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+    quote:
+      "I wasn't looking for another certificate. I was looking for a new way of thinking. With over 20 years in IT leadership, stepping into Generative AI made me feel like a beginner again, and honestly that was the best part. The challenge may have ended, but my AI journey has just begun.",
   },
   {
     id: "t2",
     name: "Lakshay",
     role: "Full Stack Builder & Student",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
-    quote: "60 days ago, I used AI mainly for everyday questions. Today I use it to build complete projects, craft professional resumes, automate workflows, and solve real-world problems. It completely changed the way I think about and use AI.",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+    quote:
+      "60 days ago, I used AI mainly for everyday questions. Today I use it to build complete projects, craft professional resumes, automate workflows, and solve real-world problems. It completely changed the way I think about and use AI.",
   },
   {
     id: "t3",
     name: "Rida Khan",
     role: "AI Enthusiast",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
-    quote: "I joined with curiosity, but also with doubts about whether I could stay consistent for all 60 days. To my surprise, I did it. This wasn't just a 60-day challenge. It was a journey that taught me consistency can turn uncertainty into achievement.",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+    quote:
+      "I joined with curiosity, but also with doubts about whether I could stay consistent for all 60 days. To my surprise, I did it. This wasn't just a 60-day challenge. It was a journey that taught me consistency can turn uncertainty into achievement.",
   },
   {
     id: "t4",
     name: "Devpal Singh Anand",
     role: "Software Engineering Student",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
-    quote: "From exploring AI concepts to building production-ready projects, every challenge strengthened my technical skills and encouraged me to think like an engineer. Today AI isn't just something I learn. It's a tool I use to solve meaningful problems.",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+    quote:
+      "From exploring AI concepts to building production-ready projects, every challenge strengthened my technical skills and encouraged me to think like an engineer. Today AI isn't just something I learn. It's a tool I use to solve meaningful problems.",
   },
 ];
 
@@ -252,51 +271,61 @@ export const FAQS: FAQItem[] = [
   {
     id: "faq-1",
     question: "Is purchasing a Claude subscription mandatory for this challenge?",
-    answer: "No, a paid subscription is not mandatory. You can participate using free tier access, API free credits, or alternative open-weights AI tools as specified in each task brief.",
+    answer:
+      "No, a paid subscription is not mandatory. You can participate using free tier access, API free credits, or alternative open-weights AI tools as specified in each task brief.",
   },
   {
     id: "faq-2",
     question: "Do I need to create a Claude account?",
-    answer: "Yes, creating a free Claude account (or accessing Claude via Anthropic API console) is required to execute the daily prompts and hands-on exercises.",
+    answer:
+      "Yes, creating a free Claude account (or accessing Claude via Anthropic API console) is required to execute the daily prompts and hands-on exercises.",
   },
   {
     id: "faq-3",
     question: "Where can I find the daily task?",
-    answer: "Daily tasks are published every day at 12:00 AM IST on your student dashboard under the 'Today's Task' card and emailed to registered participants.",
+    answer:
+      "Daily tasks are published every day at 12:00 AM IST on your student dashboard under the 'Today's Task' card and emailed to registered participants.",
   },
   {
     id: "faq-4",
     question: "Will I receive daily tasks or teaching sessions?",
-    answer: "You receive self-paced practical task briefs accompanied by reference code snippets, live Q&A community check-ins, and weekend review streams.",
+    answer:
+      "You receive self-paced practical task briefs accompanied by reference code snippets, live Q&A community check-ins, and weekend review streams.",
   },
   {
     id: "faq-5",
     question: "What if I miss a day's task?",
-    answer: "Don't panic! You can use 'Missed - Catch Up' mode to complete backlog tasks and maintain your streak progress.",
+    answer:
+      "Don't panic! You can use 'Missed - Catch Up' mode to complete backlog tasks and maintain your streak progress.",
   },
   {
     id: "faq-6",
     question: "Will I receive goodies after completing the challenge?",
-    answer: "Top consistency achievers receive official ABTalks builder badges, exclusive swag packages, and direct fast-track interviews with hiring partners.",
+    answer:
+      "Top consistency achievers receive official ABTalks builder badges, exclusive swag packages, and direct fast-track interviews with hiring partners.",
   },
   {
     id: "faq-7",
     question: "Who should I contact if I have an issue with a task?",
-    answer: "You can post in the ABTalks Discord #help channel or reach out via our official WhatsApp builder community link in the dashboard footer.",
+    answer:
+      "You can post in the ABTalks Discord #help channel or reach out via our official WhatsApp builder community link in the dashboard footer.",
   },
   {
     id: "faq-8",
     question: "Is there any YouTube channel for the Claude Challenge?",
-    answer: "Yes! Check out 'ABTalks on AI' YouTube channel for daily video walkthroughs and deep-dive solution explanations.",
+    answer:
+      "Yes! Check out 'ABTalks on AI' YouTube channel for daily video walkthroughs and deep-dive solution explanations.",
   },
   {
     id: "faq-9",
     question: "Will we explore different AI tools during the challenge?",
-    answer: "Yes! While Claude is the core focus, we also cover complementary tools like Cursor, ChatGPT, v0, Midjourney, and LangChain.",
+    answer:
+      "Yes! While Claude is the core focus, we also cover complementary tools like Cursor, ChatGPT, v0, Midjourney, and LangChain.",
   },
   {
     id: "faq-10",
     question: "Can I use tools other than Claude for the challenge?",
-    answer: "Absolutely. As long as your submission fulfills the proof-of-work requirements, you are free to use any AI development environment.",
+    answer:
+      "Absolutely. As long as your submission fulfills the proof-of-work requirements, you are free to use any AI development environment.",
   },
 ];

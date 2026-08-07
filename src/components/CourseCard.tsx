@@ -2,13 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Star } from "lucide-react";
 import type { Course } from "@/lib/courses";
 
-export function CourseCard({
-  course,
-  percent,
-}: {
-  course: Course;
-  percent?: number | undefined;
-}) {
+export function CourseCard({ course, percent }: { course: Course; percent?: number | undefined }) {
   return (
     <Link
       to="/courses/$slug"

@@ -1,6 +1,19 @@
 import React, { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Briefcase, MapPin, Building, Calendar, CheckCircle2, UserCheck, Flame, Award, ChevronDown, ChevronUp, Search, Filter } from "lucide-react";
+import {
+  Briefcase,
+  MapPin,
+  Building,
+  Calendar,
+  CheckCircle2,
+  UserCheck,
+  Flame,
+  Award,
+  ChevronDown,
+  ChevronUp,
+  Search,
+  Filter,
+} from "lucide-react";
 import { JOBS_LIST, CANDIDATES_LIST, JobListing, Candidate } from "@/lib/abtalks-data";
 import { useUserState } from "@/lib/user-store";
 
@@ -8,7 +21,11 @@ export const Route = createFileRoute("/jobs")({
   head: () => ({
     meta: [
       { title: "Partner Jobs & Proof-of-Work Candidate Directory | ABTalks" },
-      { name: "description", content: "Discover open developer roles and explore verified candidate proof-of-work signals on ABTalks." },
+      {
+        name: "description",
+        content:
+          "Discover open developer roles and explore verified candidate proof-of-work signals on ABTalks.",
+      },
     ],
   }),
   component: JobsPage,
@@ -36,9 +53,11 @@ function JobsPage() {
   });
 
   const filteredCandidates = CANDIDATES_LIST.filter((c) => {
-    const matchesSearch = c.member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          c.member.jobRole.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesRole = roleFilter === "All" || c.member.jobRole.toLowerCase().includes(roleFilter.toLowerCase());
+    const matchesSearch =
+      c.member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.member.jobRole.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesRole =
+      roleFilter === "All" || c.member.jobRole.toLowerCase().includes(roleFilter.toLowerCase());
     return matchesSearch && matchesRole;
   });
 
@@ -53,7 +72,6 @@ function JobsPage() {
   return (
     <div className="min-h-screen bg-[#07090E] pb-24 text-white">
       <div className="mx-auto max-w-6xl px-4 pt-8 space-y-8">
-        
         {/* Header Title & Top Navigation Tabs */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
           <div>
@@ -224,15 +242,21 @@ function JobsPage() {
                   {/* Signals Bar */}
                   <div className="grid grid-cols-3 gap-2 border-t border-white/10 pt-3 text-center">
                     <div className="rounded-lg bg-white/5 p-2">
-                      <p className="font-display text-base font-black text-amber-400">{cand.signals.commitDays}</p>
+                      <p className="font-display text-base font-black text-amber-400">
+                        {cand.signals.commitDays}
+                      </p>
                       <p className="text-[9px] text-gray-400">Commit Days</p>
                     </div>
                     <div className="rounded-lg bg-white/5 p-2">
-                      <p className="font-display text-base font-black text-purple-300">{cand.signals.missionsCompleted}</p>
+                      <p className="font-display text-base font-black text-purple-300">
+                        {cand.signals.missionsCompleted}
+                      </p>
                       <p className="text-[9px] text-gray-400">Missions</p>
                     </div>
                     <div className="rounded-lg bg-white/5 p-2">
-                      <p className="font-display text-base font-black text-emerald-400">{cand.signals.missionsFirstTry}</p>
+                      <p className="font-display text-base font-black text-emerald-400">
+                        {cand.signals.missionsFirstTry}
+                      </p>
                       <p className="text-[9px] text-gray-400">First Try</p>
                     </div>
                   </div>
@@ -245,7 +269,6 @@ function JobsPage() {
             </div>
           </div>
         )}
-
       </div>
 
       {/* Quick Apply Modal for Job Listings */}
@@ -255,7 +278,9 @@ function JobsPage() {
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="font-display text-xl font-bold text-white">{selectedJob.title}</h3>
-                <p className="text-xs text-purple-300 font-semibold">{selectedJob.company} · {selectedJob.location}</p>
+                <p className="text-xs text-purple-300 font-semibold">
+                  {selectedJob.company} · {selectedJob.location}
+                </p>
               </div>
               <button
                 onClick={() => setSelectedJob(null)}
@@ -268,7 +293,9 @@ function JobsPage() {
             <p className="text-xs text-gray-300 leading-relaxed">{selectedJob.description}</p>
 
             <div>
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2">Requirements</h4>
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2">
+                Requirements
+              </h4>
               <ul className="space-y-1 text-xs text-gray-400 list-disc list-inside">
                 {selectedJob.requirements.map((req, i) => (
                   <li key={i}>{req}</li>
@@ -279,10 +306,13 @@ function JobsPage() {
             <div className="rounded-xl border border-purple-500/30 bg-purple-950/40 p-4 space-y-2 text-xs">
               <div className="flex items-center justify-between">
                 <span className="font-bold text-white">Your ABTalks Proof-of-Work Profile</span>
-                <span className="text-purple-300 font-mono font-bold">{state.synergyPoints} Synergy</span>
+                <span className="text-purple-300 font-mono font-bold">
+                  {state.synergyPoints} Synergy
+                </span>
               </div>
               <p className="text-[11px] text-gray-400">
-                Your 60-day challenge streak ({state.completedDays.length} days completed) will be automatically attached to your application.
+                Your 60-day challenge streak ({state.completedDays.length} days completed) will be
+                automatically attached to your application.
               </p>
             </div>
 
@@ -311,13 +341,16 @@ function JobsPage() {
             <div className="flex items-start justify-between border-b border-white/10 pb-4">
               <div>
                 <div className="flex items-center gap-3">
-                  <h3 className="font-display text-2xl font-black text-white">{selectedCandidate.member.name}</h3>
+                  <h3 className="font-display text-2xl font-black text-white">
+                    {selectedCandidate.member.name}
+                  </h3>
                   <span className="rounded bg-purple-950 text-purple-300 border border-purple-500/30 px-2 py-0.5 text-xs font-bold">
                     {selectedCandidate.member.id}
                   </span>
                 </div>
                 <p className="text-xs text-purple-400 font-bold mt-1">
-                  {selectedCandidate.member.jobRole} · {selectedCandidate.member.yearsExperience} yrs experience
+                  {selectedCandidate.member.jobRole} · {selectedCandidate.member.yearsExperience}{" "}
+                  yrs experience
                 </p>
                 <p className="text-[11px] text-gray-400">{selectedCandidate.member.education}</p>
               </div>
@@ -333,15 +366,21 @@ function JobsPage() {
             {/* Candidate Signals Grid */}
             <div className="grid grid-cols-3 gap-3 rounded-xl border border-white/10 bg-black/40 p-4 text-center">
               <div>
-                <p className="font-display text-2xl font-black text-amber-400">{selectedCandidate.signals.commitDays}</p>
+                <p className="font-display text-2xl font-black text-amber-400">
+                  {selectedCandidate.signals.commitDays}
+                </p>
                 <p className="text-[10px] text-gray-400">Total Commit Days</p>
               </div>
               <div>
-                <p className="font-display text-2xl font-black text-purple-300">{selectedCandidate.signals.missionsCompleted}</p>
+                <p className="font-display text-2xl font-black text-purple-300">
+                  {selectedCandidate.signals.missionsCompleted}
+                </p>
                 <p className="text-[10px] text-gray-400">Missions Completed</p>
               </div>
               <div>
-                <p className="font-display text-2xl font-black text-emerald-400">{selectedCandidate.signals.missionsFirstTry}</p>
+                <p className="font-display text-2xl font-black text-emerald-400">
+                  {selectedCandidate.signals.missionsFirstTry}
+                </p>
                 <p className="text-[10px] text-gray-400">First-Try Passes</p>
               </div>
             </div>
@@ -362,7 +401,9 @@ function JobsPage() {
                       <span className="text-gray-200 font-medium">{m.title}</span>
                     </div>
                     {m.skipped ? (
-                      <span className="rounded bg-gray-800 px-2 py-0.5 text-[10px] text-gray-400 font-semibold">Skipped</span>
+                      <span className="rounded bg-gray-800 px-2 py-0.5 text-[10px] text-gray-400 font-semibold">
+                        Skipped
+                      </span>
                     ) : m.passed ? (
                       <span className="rounded bg-emerald-950 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-bold">
                         Passed ({m.attempts} {m.attempts === 1 ? "try" : "attempts"})
@@ -385,7 +426,11 @@ function JobsPage() {
                 Close
               </button>
               <button
-                onClick={() => alert(`Interview request sent for candidate ${selectedCandidate.member.name} (${selectedCandidate.member.id})!`)}
+                onClick={() =>
+                  alert(
+                    `Interview request sent for candidate ${selectedCandidate.member.name} (${selectedCandidate.member.id})!`,
+                  )
+                }
                 className="rounded-xl bg-purple-600 px-5 py-2.5 text-xs font-bold text-white hover:bg-purple-500"
               >
                 Request Fast-Track Interview
@@ -394,7 +439,6 @@ function JobsPage() {
           </div>
         </div>
       )}
-
     </div>
   );
 }

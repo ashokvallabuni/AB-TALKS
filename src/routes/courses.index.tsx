@@ -58,13 +58,7 @@ function CoursesPage() {
       <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {list.map((course) => {
           const p = hydrated ? percentFor(course.slug, course.lessons.length) : 0;
-          return (
-            <CourseCard
-              key={course.slug}
-              course={course}
-              percent={p > 0 ? p : undefined}
-            />
-          );
+          return <CourseCard key={course.slug} course={course} percent={p > 0 ? p : undefined} />;
         })}
       </div>
     </div>

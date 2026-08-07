@@ -51,17 +51,12 @@ export function useProgress() {
 
   const toggleSaved = useCallback((slug: string) => {
     const current = read<string[]>(SAVED_KEY, []);
-    const next = current.includes(slug)
-      ? current.filter((s) => s !== slug)
-      : [...current, slug];
+    const next = current.includes(slug) ? current.filter((s) => s !== slug) : [...current, slug];
     window.localStorage.setItem(SAVED_KEY, JSON.stringify(next));
     emit();
   }, []);
 
-  const completedFor = useCallback(
-    (slug: string) => progress[slug] ?? [],
-    [progress],
-  );
+  const completedFor = useCallback((slug: string) => progress[slug] ?? [], [progress]);
 
   const percentFor = useCallback(
     (slug: string, total: number) =>

@@ -24,8 +24,7 @@ export type Course = {
   lessons: Lesson[];
 };
 
-const SAMPLE_VIDEO =
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4";
+const SAMPLE_VIDEO = "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4";
 
 function lessons(titles: [string, string][]): Lesson[] {
   return titles.map(([title, duration], i) => ({

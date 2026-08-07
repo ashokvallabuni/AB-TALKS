@@ -10,13 +10,15 @@ export function SiteHeader() {
   const { state, selectTrack } = useUserState();
   const [trackOpen, setTrackOpen] = useState(false);
 
-  const isDashboardArea = location.pathname.startsWith("/dashboard") || location.pathname.startsWith("/task") || location.pathname.startsWith("/jobs");
+  const isDashboardArea =
+    location.pathname.startsWith("/dashboard") ||
+    location.pathname.startsWith("/task") ||
+    location.pathname.startsWith("/jobs");
   const currentTrack = TRACKS.find((t) => t.id === state.selectedTrack) || TRACKS[0];
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-[#0B0F19]/90 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 sm:px-6">
-        
         {/* Brand Logo & Title */}
         <div className="flex items-center gap-3">
           <Link to="/" className="flex items-center gap-2.5 group">
@@ -48,7 +50,9 @@ export function SiteHeader() {
 
               {trackOpen && (
                 <div className="absolute left-0 top-full mt-2 w-56 rounded-xl border border-border bg-[#131927] p-1.5 shadow-2xl z-50">
-                  <div className="px-2 py-1 text-[10px] font-bold text-muted-foreground uppercase">Select Active Track</div>
+                  <div className="px-2 py-1 text-[10px] font-bold text-muted-foreground uppercase">
+                    Select Active Track
+                  </div>
                   {TRACKS.map((t) => (
                     <button
                       key={t.id}
