@@ -228,6 +228,92 @@ export const JOBS_LIST: JobListing[] = [
   },
 ];
 
+export type Candidate = {
+  member: {
+    id: string;
+    name: string;
+    jobRole: string;
+    yearsExperience: number;
+    education: string;
+    status: string;
+  };
+  signals: {
+    commitDays: number;
+    missionsCompleted: number;
+    missionsFirstTry: number;
+  };
+  missions: Array<{
+    day: number;
+    title: string;
+    passed: boolean;
+    skipped?: boolean;
+    attempts: number;
+  }>;
+};
+
+export const CANDIDATES_LIST: Candidate[] = [
+  {
+    member: {
+      id: "C-101",
+      name: "Aarav Sharma",
+      jobRole: "AI Engineer",
+      yearsExperience: 2,
+      education: "B.Tech Computer Science",
+      status: "Available",
+    },
+    signals: {
+      commitDays: 58,
+      missionsCompleted: 50,
+      missionsFirstTry: 44,
+    },
+    missions: [
+      { day: 1, title: "AI system pipeline mapping", passed: true, attempts: 1 },
+      { day: 5, title: "Claude prompt engineering", passed: true, attempts: 1 },
+      { day: 12, title: "RAG-based assistant prototype", passed: true, attempts: 2 },
+    ],
+  },
+  {
+    member: {
+      id: "C-102",
+      name: "Neha Singh",
+      jobRole: "Software Engineer",
+      yearsExperience: 3,
+      education: "MCA",
+      status: "Interviewing",
+    },
+    signals: {
+      commitDays: 60,
+      missionsCompleted: 57,
+      missionsFirstTry: 52,
+    },
+    missions: [
+      { day: 2, title: "Full-stack feature build", passed: true, attempts: 1 },
+      { day: 8, title: "API design and testing", passed: true, attempts: 1 },
+      { day: 18, title: "Deployment automation", passed: true, attempts: 1 },
+    ],
+  },
+  {
+    member: {
+      id: "C-103",
+      name: "Riya Patel",
+      jobRole: "Data Engineer",
+      yearsExperience: 4,
+      education: "B.Sc. Data Science",
+      status: "Available",
+    },
+    signals: {
+      commitDays: 54,
+      missionsCompleted: 49,
+      missionsFirstTry: 46,
+    },
+    missions: [
+      { day: 3, title: "Data pipeline design", passed: true, attempts: 1 },
+      { day: 14, title: "ETL integration", passed: true, attempts: 2 },
+      { day: 22, title: "Analytics dashboard", passed: true, attempts: 1 },
+    ],
+  },
+];
+
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: "t1",
