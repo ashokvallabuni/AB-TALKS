@@ -207,3 +207,29 @@
 @utility animate-rise {
   animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+@utility tile-ontime {
+  background-color: #10b981;
+  border-color: #059669;
+}
+
+@utility tile-rejected {
+  background-color: #8b5cf6;
+  border-color: #7c3aed;
+}
+
+@utility tile-missed {
+  background-color: #ef4444;
+  border-color: #dc2626;
+}
+
+@utility tile-catchup {
+  background-color: #f59e0b;
+  border-color: #d97706;
+}
+
+@utility tile-future {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+

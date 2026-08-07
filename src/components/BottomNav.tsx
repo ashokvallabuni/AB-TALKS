@@ -1,29 +1,31 @@
 import { Link } from "@tanstack/react-router";
-import { Home, LayoutGrid, User } from "lucide-react";
+import { Home, LayoutDashboard, CheckSquare, BookOpen, Briefcase } from "lucide-react";
 
-const items = [
+const navItems = [
   { to: "/", label: "Home", icon: Home },
-  { to: "/courses", label: "Courses", icon: LayoutGrid },
-  { to: "/dashboard", label: "Profile", icon: User },
+  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/task/1", label: "Daily Task", icon: CheckSquare },
+  { to: "/courses", label: "Courses", icon: BookOpen },
+  { to: "/jobs", label: "Jobs", icon: Briefcase },
 ] as const;
 
 export function BottomNav() {
   return (
     <nav
-      aria-label="Primary"
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-card/85 backdrop-blur-xl md:hidden"
+      aria-label="Mobile Navigation"
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-purple-500/20 bg-[#0B0F19]/90 backdrop-blur-xl md:hidden"
     >
-      <ul className="mx-auto grid max-w-md grid-cols-3">
-        {items.map(({ to, label, icon: Icon }) => (
+      <ul className="mx-auto grid grid-cols-5 py-1">
+        {navItems.map(({ to, label, icon: Icon }) => (
           <li key={to}>
             <Link
               to={to}
               activeOptions={{ exact: to === "/" }}
-              className="flex flex-col items-center gap-1 py-3 text-xs text-muted-foreground transition-colors"
-              activeProps={{ className: "text-primary-glow" }}
+              className="flex flex-col items-center gap-1 py-2 text-[10px] font-medium text-gray-400 transition-colors"
+              activeProps={{ className: "text-purple-400 font-bold" }}
             >
               <Icon className="h-5 w-5" />
-              {label}
+              <span>{label}</span>
             </Link>
           </li>
         ))}
