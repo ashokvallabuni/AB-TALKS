@@ -23,9 +23,11 @@ function DashboardPage() {
   const [selectedTileDay, setSelectedTileDay] = useState<number | null>(null);
 
   const activeTrack = TRACKS.find((t) => t.id === state.selectedTrack) || TRACKS[0];
-  const todayTask = DAILY_TASKS[0];
+  
+  // Find current day task for active track
+  const todayTask = DAILY_TASKS.find((t) => t.trackId === activeTrack.id && t.day === 1) || DAILY_TASKS[0];
 
-  // Build array of 60 tiles with explicit DayStatus type
+  // Build array of 60 tiles matching the exact 6x10 grid in screenshots
   const tiles: Array<{ day: number; status: DayStatus }> = Array.from({ length: 60 }, (_, i) => {
     const day = i + 1;
     let status: DayStatus = "Future";
@@ -45,7 +47,7 @@ function DashboardPage() {
     <div className="min-h-screen bg-[#07090E] pb-24 text-white">
       
       {/* Campus Ambassador Announcement Bar */}
-      <div className="border-b border-purple-500/20 bg-purple-950/50 px-4 py-2.5 text-center text-xs font-semibold text-purple-200">
+      <div className="border-b border-purple-500/20 bg-[#16122C] px-4 py-2.5 text-center text-xs font-semibold text-purple-200">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Users className="h-4 w-4 text-purple-400 shrink-0" />
@@ -55,7 +57,7 @@ function DashboardPage() {
             href="https://abtalks.in/ambassador"
             target="_blank"
             rel="noreferrer"
-            className="rounded bg-purple-600/60 px-3 py-1 text-[11px] font-bold text-white transition-colors hover:bg-purple-600"
+            className="text-xs text-purple-300 hover:text-white underline font-normal"
           >
             Learn More
           </a>
@@ -64,11 +66,11 @@ function DashboardPage() {
 
       <div className="mx-auto max-w-6xl px-4 pt-8 space-y-8">
         
-        {/* Module 1: 60-Day Journey Contribution Matrix */}
-        <section className="rounded-2xl border border-white/10 bg-[#0F1422] p-6 sm:p-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-4">
+        {/* Module 1: Your 60-Day Journey Contribution Matrix */}
+        <section className="rounded-2xl border border-white/10 bg-[#0C0F1D] p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4">
             <div>
-              <h1 className="font-display text-2xl font-extrabold text-white sm:text-3xl">
+              <h1 className="font-display text-2xl font-black text-white sm:text-3xl">
                 Your 60-Day Journey
               </h1>
               <p className="mt-1 text-xs text-gray-400">
@@ -77,98 +79,99 @@ function DashboardPage() {
             </div>
           </div>
 
-          {/* 60 Tile Heatmap Grid */}
-          <div className="mt-6 grid grid-cols-6 sm:grid-cols-10 gap-2 sm:gap-2.5">
-            {tiles.map(({ day, status }) => (
-              <button
-                key={day}
-                onClick={() => setSelectedTileDay(day)}
-                title={`Day ${day}: ${status}`}
-                className={`aspect-square rounded-lg border transition-all hover:scale-110 flex items-center justify-center text-[10px] font-bold ${
-                  status === "On time"
-                    ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-300"
-                    : status === "Rejected"
-                    ? "bg-purple-600/30 border-purple-500/50 text-purple-200"
-                    : status === "Missed"
-                    ? "bg-rose-500/20 border-rose-500/50 text-rose-300"
-                    : status === "Missed - catch up"
-                    ? "bg-amber-500/20 border-amber-500/50 text-amber-300"
-                    : "bg-gray-900/60 border-white/10 text-gray-600"
-                }`}
-              >
-                {day}
-              </button>
-            ))}
+          {/* 60 Tile Grid (6 rows x 10 cols) */}
+          <div className="mt-6 flex justify-center sm:justify-start">
+            <div className="grid grid-cols-10 gap-2.5 sm:gap-3 max-w-2xl">
+              {tiles.map(({ day, status }) => (
+                <button
+                  key={day}
+                  onClick={() => setSelectedTileDay(day)}
+                  title={`Day ${day}: ${status}`}
+                  className={`h-7 w-7 sm:h-9 sm:w-9 rounded-lg border transition-all hover:scale-105 flex items-center justify-center text-[10px] font-bold ${
+                    status === "On time"
+                      ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-300"
+                      : status === "Rejected"
+                      ? "bg-purple-600/30 border-purple-500/50 text-purple-200"
+                      : status === "Missed"
+                      ? "bg-rose-500/20 border-rose-500/50 text-rose-300"
+                      : status === "Missed - catch up"
+                      ? "bg-amber-500/20 border-amber-500/50 text-amber-300"
+                      : "bg-[#141829] border-white/10 text-transparent"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
-          {/* Heatmap Tile Detail Modal / Popup */}
+          {/* Selected Tile Detail Drawer */}
           {selectedTileDay && (
-            <div className="mt-4 rounded-xl border border-purple-500/30 bg-purple-950/40 p-4 flex items-center justify-between text-xs">
+            <div className="mt-6 rounded-xl border border-purple-500/30 bg-purple-950/40 p-4 flex items-center justify-between text-xs animate-rise">
               <div>
                 <span className="font-bold text-purple-300">Selected Day {selectedTileDay}:</span>{" "}
                 <span className="text-gray-300">
-                  {selectedTileDay === 1
-                    ? "Day 1: Claude Setup & Your AI Personality Profile"
-                    : `Upcoming Challenge Task for Day ${selectedTileDay}`}
+                  {selectedTileDay === 1 ? todayTask.title : `Day ${selectedTileDay} Challenge Brief`}
                 </span>
               </div>
               <Link
                 to={`/task/${selectedTileDay}`}
-                className="rounded bg-purple-600 px-3 py-1 text-[11px] font-bold text-white hover:bg-purple-500"
+                className="rounded bg-purple-600 px-3 py-1.5 text-[11px] font-bold text-white hover:bg-purple-500"
               >
-                Open Task →
+                Start Challenge →
               </Link>
             </div>
           )}
 
           {/* Status Color Legend */}
-          <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-white/10 pt-4 text-xs">
-            <div className="flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded bg-emerald-500" />
-              <span className="text-gray-400">On time</span>
+          <div className="mt-8 flex flex-wrap items-center gap-5 border-t border-white/10 pt-4 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="h-3 w-3 rounded-full bg-[#10B981]" />
+              <span className="text-gray-300 text-xs">On time</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded bg-purple-600" />
-              <span className="text-gray-400">Rejected</span>
+            <div className="flex items-center gap-2">
+              <span className="h-3 w-3 rounded-full bg-[#8B5CF6]" />
+              <span className="text-gray-300 text-xs">Rejected</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded bg-rose-500" />
-              <span className="text-gray-400">Missed</span>
+            <div className="flex items-center gap-2">
+              <span className="h-3 w-3 rounded-full bg-[#EF4444]" />
+              <span className="text-gray-300 text-xs">Missed</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded bg-amber-500" />
-              <span className="text-gray-400">Missed - catch up</span>
+            <div className="flex items-center gap-2">
+              <span className="h-3 w-3 rounded-full bg-[#F59E0B]" />
+              <span className="text-gray-300 text-xs">Missed - catch up</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded bg-gray-800 border border-white/10" />
-              <span className="text-gray-400">Future</span>
+            <div className="flex items-center gap-2">
+              <span className="h-3 w-3 rounded-full bg-[#1E293B] border border-white/20" />
+              <span className="text-gray-300 text-xs">Future</span>
             </div>
           </div>
         </section>
 
         {/* Module 2: Today's Task Hero Banner */}
         {todayTask && (
-          <section className="rounded-2xl border border-purple-500/30 bg-[#0F1422] p-6 sm:p-8">
+          <section className="rounded-2xl border border-white/10 bg-[#0C0F1D] p-6 sm:p-8">
             <div className="text-xs text-gray-400">
-              <span className="font-bold text-white uppercase">Today's Task</span> · {activeTrack?.title || "Claude Challenge"} · IST day 1
+              <span className="font-bold text-white">Today's Task</span>
             </div>
+            <p className="text-xs text-gray-400 mt-0.5">
+              {todayTask.challengeLabel} · IST day 1
+            </p>
 
             <div className="mt-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="flex items-start gap-6">
-                <div className="flex flex-col items-center justify-center rounded-2xl border border-purple-500/40 bg-purple-950/60 px-6 py-4">
-                  <span className="font-display text-4xl font-black text-purple-300">1</span>
-                  <span className="text-[10px] font-bold uppercase text-purple-400">DAY</span>
+                <div className="flex flex-col items-center justify-center rounded-xl bg-purple-950/40 border border-purple-500/30 px-6 py-4">
+                  <span className="font-display text-4xl font-black text-purple-300 leading-none">1</span>
+                  <span className="text-[10px] font-extrabold uppercase text-purple-400 tracking-wider mt-1">DAY</span>
                 </div>
 
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="rounded bg-emerald-950/80 border border-emerald-500/40 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
+                    <span className="rounded bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-0.5 text-[10px] font-bold text-emerald-300">
                       {todayTask.level}
                     </span>
                     <span className="text-xs text-gray-400">⏱️ {todayTask.estimatedTime}</span>
                   </div>
 
-                  <h2 className="mt-2 font-display text-xl font-bold text-white sm:text-2xl">
+                  <h2 className="mt-3 font-display text-xl font-bold text-white sm:text-2xl">
                     {todayTask.title}
                   </h2>
                 </div>
@@ -176,7 +179,7 @@ function DashboardPage() {
 
               <Link
                 to="/task/1"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 px-6 py-3.5 text-sm font-bold text-white transition-transform hover:scale-105 hover:bg-purple-500 shrink-0"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#6366F1] px-6 py-3.5 text-xs font-bold text-white transition-all hover:bg-[#4F46E5] shrink-0 shadow-lg shadow-indigo-900/30"
               >
                 <span>Start Today's Challenge</span>
                 <ArrowRight className="h-4 w-4" />
@@ -185,58 +188,68 @@ function DashboardPage() {
           </section>
         )}
 
-        {/* Module 3: 4 Key Stat Cards */}
+        {/* Module 3: 4 Key Stat Cards matching screenshot 100% */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           
-          <div className="rounded-2xl border border-white/10 bg-[#0F1422] p-5">
+          <div className="rounded-2xl border border-white/10 bg-[#0C0F1D] p-6 flex flex-col justify-between">
             <div className="flex items-center justify-between text-gray-400">
-              <span className="text-[10px] font-bold uppercase tracking-wider">DAY 1 OF 60</span>
-              <Calendar className="h-4 w-4 text-purple-400" />
+              <span className="font-display text-4xl font-black text-white">1</span>
+              <Calendar className="h-4 w-4 text-gray-400" />
             </div>
-            <p className="mt-3 font-display text-3xl font-black text-white">1</p>
-            <div className="mt-3 h-1.5 w-full rounded-full bg-gray-800">
-              <div className="h-full w-[2%] rounded-full bg-purple-500" />
+            <div className="mt-4">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400">DAY 1 OF 60</p>
+              <div className="mt-2 flex items-center justify-between">
+                <span className="h-1.5 w-1.5 rounded-full bg-purple-500" />
+                <div className="h-[2px] w-full bg-gray-800" />
+                <span className="h-1.5 w-1.5 rounded-full bg-gray-700" />
+              </div>
+              <p className="mt-3 text-[10px] text-gray-500 leading-tight">Calendar progress (IST) from your start date</p>
             </div>
-            <p className="mt-2 text-[10px] text-gray-400">Calendar progress (IST) from your start date</p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[#0F1422] p-5">
+          <div className="rounded-2xl border border-white/10 bg-[#0C0F1D] p-6 flex flex-col justify-between">
             <div className="flex items-center justify-between text-gray-400">
-              <span className="text-[10px] font-bold uppercase tracking-wider">CURRENT STREAK</span>
-              <Flame className="h-4 w-4 text-amber-500 fill-amber-500" />
+              <span className="font-display text-4xl font-black text-white">{state.currentStreak}</span>
+              <Flame className="h-4 w-4 text-amber-500" />
             </div>
-            <p className="mt-3 font-display text-3xl font-black text-white">{state.currentStreak}</p>
-            <p className="mt-4 text-[10px] text-gray-400">Longest: {state.longestStreak}</p>
+            <div className="mt-4">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400">CURRENT STREAK</p>
+              <p className="mt-3 text-[10px] text-gray-500">Longest: {state.longestStreak}</p>
+            </div>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[#0F1422] p-5">
+          <div className="rounded-2xl border border-white/10 bg-[#0C0F1D] p-6 flex flex-col justify-between">
             <div className="flex items-center justify-between text-gray-400">
-              <span className="text-[10px] font-bold uppercase tracking-wider">DAYS COMPLETED</span>
+              <span className="font-display text-4xl font-black text-white">{state.completedDays.length}</span>
               <CheckCircle className="h-4 w-4 text-emerald-400" />
             </div>
-            <p className="mt-3 font-display text-3xl font-black text-white">{state.completedDays.length}</p>
-            <p className="mt-4 text-[10px] text-gray-400">Out of {activeTrack?.totalDays || 60} challenge days</p>
+            <div className="mt-4">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400">DAYS COMPLETED</p>
+              <p className="mt-3 text-[10px] text-gray-500">Out of {activeTrack?.totalDays || 60} challenge days</p>
+            </div>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[#0F1422] p-5">
+          <div className="rounded-2xl border border-white/10 bg-[#0C0F1D] p-6 flex flex-col justify-between">
             <div className="flex items-center justify-between text-gray-400">
-              <span className="text-[10px] font-bold uppercase tracking-wider">REFERRALS</span>
-              <Users className="h-4 w-4 text-indigo-400" />
+              <span className="font-display text-4xl font-black text-white">0</span>
+              <Users className="h-4 w-4 text-purple-400" />
             </div>
-            <p className="mt-3 font-display text-3xl font-black text-white">0</p>
-            <p className="mt-4 text-[10px] text-gray-400">Your code: <span className="font-mono text-purple-300 font-bold">{state.referralCode}</span></p>
+            <div className="mt-4">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400">REFERRALS</p>
+              <p className="mt-3 text-[10px] text-gray-500">Your code: <span className="font-mono text-gray-300 font-bold">{state.referralCode}</span></p>
+            </div>
           </div>
 
         </div>
 
         {/* Module 4: Recent Activity Feed */}
-        <section className="rounded-2xl border border-white/10 bg-[#0F1422] p-6">
+        <section className="rounded-2xl border border-white/10 bg-[#0C0F1D] p-6">
           <h3 className="font-display text-base font-bold text-white">Recent activity</h3>
-          <p className="text-xs text-gray-400">Last 7 submissions</p>
+          <p className="text-xs text-gray-400 mt-0.5">Last 7 submissions</p>
 
           <div className="mt-4 border-t border-white/10 pt-4">
             {Object.keys(state.submissions).length === 0 ? (
-              <p className="text-xs text-gray-500 py-2">
+              <p className="text-xs text-gray-400 py-1">
                 No submissions yet. Complete Day 1 to get started.
               </p>
             ) : (
@@ -247,7 +260,7 @@ function DashboardPage() {
                       <span className="font-bold text-purple-300">Day {sub.day} Submission</span>
                       <span className="ml-2 text-gray-400">({sub.completedAt.slice(0, 10)})</span>
                     </div>
-                    <span className="rounded bg-emerald-950 px-2 py-0.5 text-emerald-300 font-bold">
+                    <span className="rounded bg-emerald-950 px-2.5 py-0.5 text-emerald-300 font-bold border border-emerald-500/30">
                       +{sub.synergyEarned} Synergy
                     </span>
                   </div>
@@ -258,7 +271,7 @@ function DashboardPage() {
         </section>
 
         {/* Module 5: Frequently Asked Questions Accordion Drawer */}
-        <section className="rounded-2xl border border-white/10 bg-[#0F1422] p-6 sm:p-8">
+        <section className="rounded-2xl border border-white/10 bg-[#0C0F1D] p-6 sm:p-8">
           <div className="flex items-center gap-3 border-b border-white/10 pb-4">
             <HelpCircle className="h-6 w-6 text-purple-400" />
             <div>
@@ -272,7 +285,7 @@ function DashboardPage() {
               <div key={faq.id} className="py-4">
                 <button
                   onClick={() => toggleFaq(faq.id)}
-                  className="flex w-full items-center justify-between text-left text-sm font-semibold text-gray-200 hover:text-purple-300"
+                  className="flex w-full items-center justify-between text-left text-xs font-semibold text-gray-200 hover:text-purple-300"
                 >
                   <span>{faq.question}</span>
                   {openFaq === faq.id ? (

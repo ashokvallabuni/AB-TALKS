@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { courses } from "@/lib/courses";
 
-const BASE_URL = "https://abtalks.in";
+const BASE_URL = "https://www.abtalks.in";
 
 interface SitemapEntry {
   path: string;
@@ -50,7 +50,7 @@ export const Route = createFileRoute("/sitemap.xml")({
         return new Response(xml, {
           headers: {
             "Content-Type": "application/xml",
-            "Cache-Control": "public, max-age=3600",
+            "Cache-Control": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400",
           },
         });
       },

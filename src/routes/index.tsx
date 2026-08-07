@@ -1,22 +1,26 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Users, FolderGit2, Briefcase, GraduationCap, Code2, Trophy, MessageSquare, ChevronLeft, ChevronRight, Instagram, Linkedin, Youtube, Twitter, Disc as Discord } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { TRACKS, TESTIMONIALS } from "@/lib/abtalks-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ABTalks — Code Consistently. Post Publicly. Get Noticed." },
+      { title: "ABTalks | 60-Day Coding Challenge, AI Cohorts & Hackathons" },
       {
         name: "description",
-        content: "Join India's coding community for college students to learn, build, and accelerate their careers through visible proof of work.",
+        content: "Join ABTalks to build daily coding habits, deploy AI projects, compete in 48-hour hackathons, and connect with top hiring partners.",
       },
-      { property: "og:title", content: "ABTalks — Build in Public, Grow Together" },
+      { property: "og:title", content: "ABTalks | 60-Day Coding Challenge, AI Cohorts & Hackathons" },
       {
         property: "og:description",
-        content: "Gamified 60-day challenges, AI cohorts, and proof-of-work career acceleration.",
+        content: "Join ABTalks to build daily coding habits, deploy AI projects, compete in 48-hour hackathons, and connect with top hiring partners.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.abtalks.in" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://www.abtalks.in" }],
   }),
   component: IndexPage,
 });
