@@ -80,6 +80,21 @@ function IndexPage() {
             Join India's coding community for college students to learn, build, and accelerate their
             careers through visible proof of work.
           </p>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:justify-center">
+            <a
+              href="/courses"
+              className="inline-flex items-center justify-center rounded-full bg-purple-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-purple-400"
+            >
+              Start Learning
+            </a>
+            <a
+              href="/dashboard"
+              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-purple-300 hover:bg-white/10"
+            >
+              View Dashboard
+            </a>
+          </div>
         </div>
 
         {/* 4 Cohort / Track Cards Grid */}

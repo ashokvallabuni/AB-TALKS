@@ -79,6 +79,20 @@ export function SiteHeader() {
         {/* Right Navigation Controls */}
         <nav className="flex items-center gap-2 sm:gap-4">
           <Link
+            to="/courses"
+            className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-gray-200 transition-colors hover:bg-white/10"
+          >
+            Courses
+          </Link>
+
+          <Link
+            to="/dashboard"
+            className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-gray-200 transition-colors hover:bg-white/10"
+          >
+            Dashboard
+          </Link>
+
+          <Link
             to="/jobs"
             className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-gray-200 transition-colors hover:bg-white/10"
           >
