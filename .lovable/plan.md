@@ -54,6 +54,8 @@ It contains **no** course detail pages, no lesson lists, and no dashboard screen
 
 ## Technical notes
 
+- Existing typecheck errors need clearing as part of this work: missing asset modules (`abt-logo.png`, the four course images, `styles.css?url`), and strict-null/optional issues in `user-store.ts`, `dashboard.tsx`, `index.tsx`, and `task.$dayId.tsx`.
+
 - Stack stays React + TanStack Start (file-based routing) with Tailwind v4 — the project's fixed stack. Next.js is not available here; SSR, routing, and SEO outcomes are equivalent.
 - Backend is Lovable Cloud (Postgres, auth, storage), covering the Firebase/Supabase requirement with no external account setup.
 - Protected routes live under `_authenticated/`; public program pages keep SSR for SEO.
