@@ -10,7 +10,7 @@ export function SiteHeader() {
   const location = useLocation();
   const { state, selectTrack } = useUserState();
   const [trackOpen, setTrackOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
 
   const isDashboardArea =
     location.pathname.startsWith("/dashboard") ||
@@ -117,7 +117,9 @@ export function SiteHeader() {
           </button>
 
           {/* User Profile Pill */}
-          {user ? (
+          {loading ? (
+            <span className="h-7 w-20 rounded-full bg-white/5" aria-hidden />
+          ) : user ? (
             <Link
               to="/profile"
               className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 pl-1.5 pr-3 py-1 text-xs text-gray-200 transition-colors hover:bg-white/10"
