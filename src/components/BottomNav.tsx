@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { Home, LayoutDashboard, CheckSquare, BookOpen, Briefcase } from "lucide-react";
+import { Home, LayoutDashboard, CheckSquare, BookOpen, User } from "lucide-react";
 
 const navItems = [
   { to: "/", label: "Home", icon: Home, params: undefined },
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, params: undefined },
   { to: "/task/$dayId", label: "Daily Task", icon: CheckSquare, params: { dayId: "1" } },
   { to: "/courses", label: "Courses", icon: BookOpen, params: undefined },
-  { to: "/jobs", label: "Jobs", icon: Briefcase, params: undefined },
+  { to: "/profile", label: "Profile", icon: User, params: undefined },
 ] as const;
 
 export function BottomNav() {

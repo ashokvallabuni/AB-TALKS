@@ -4,11 +4,13 @@ import { Briefcase, Flame, ChevronDown, Sun, User } from "lucide-react";
 import logo from "@/assets/abt-logo.png";
 import { useUserState } from "@/lib/user-store";
 import { TRACKS } from "@/lib/abtalks-data";
+import { useAuth } from "@/hooks/useAuth";
 
 export function SiteHeader() {
   const location = useLocation();
   const { state, selectTrack } = useUserState();
   const [trackOpen, setTrackOpen] = useState(false);
+  const { user } = useAuth();
 
   const isDashboardArea =
     location.pathname.startsWith("/dashboard") ||
@@ -115,18 +117,29 @@ export function SiteHeader() {
           </button>
 
           {/* User Profile Pill */}
-          <Link
-            to="/dashboard"
-            className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 pl-1.5 pr-3 py-1 text-xs text-gray-200 transition-colors hover:bg-white/10"
-          >
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-tr from-purple-600 to-indigo-500 text-[10px] font-bold text-white">
-              <User className="h-3.5 w-3.5" />
-            </div>
-            <div className="hidden text-left md:block">
-              <p className="font-bold leading-tight text-white text-[11px]">Ashok vallabhuni</p>
-              <p className="text-[9px] text-gray-400 leading-none">ashokvallabhuni28@gmail.com</p>
-            </div>
-          </Link>
+          {user ? (
+            <Link
+              to="/profile"
+              className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 pl-1.5 pr-3 py-1 text-xs text-gray-200 transition-colors hover:bg-white/10"
+            >
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-tr from-purple-600 to-indigo-500 text-[10px] font-bold text-white">
+                <User className="h-3.5 w-3.5" />
+              </div>
+              <div className="hidden text-left md:block">
+                <p className="font-bold leading-tight text-white text-[11px]">
+                  {(user.user_metadata?.["full_name"] as string) || "My profile"}
+                </p>
+                <p className="text-[9px] text-gray-400 leading-none">{user.email}</p>
+              </div>
+            </Link>
+          ) : (
+            <Link
+              to="/auth"
+              className="rounded-full bg-[#6366F1] px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-[#4F46E5]"
+            >
+              Sign in
+            </Link>
+          )}
         </nav>
       </div>
     </header>
