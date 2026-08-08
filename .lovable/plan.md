@@ -1,6 +1,24 @@
 # ABTalks Rebuild — Real Content, Modern Mobile-First UI
 
-## What the uploaded PDF actually contains
+## Sources of truth
+
+Two real sources, used verbatim — nothing invented:
+
+**A. The homepage PDF (abtalks.in)** — hero, programs, how-it-works, testimonials, footer.
+**B. The signed-in screenshots you just sent** — dashboard, challenge day page, jobs, hackathon dashboard.
+
+### What the signed-in screenshots show (real hierarchy to preserve)
+
+- **Header**: AB TALKS wordmark, enrollment/track selector, Jobs link, synergy flame counter, theme toggle, user pill with name + email.
+- **Track selector — "Your enrollments"**: `AI · Artificial Intelligence · Day 0 / 60 · "60 Days of Code — Artificial In…"`, `CLAUDE · Claude AI Mastery · Day 0 / 60 · "60-Day Claude AI Mastery Ch…"`, `HACK · ViCODATHON · "48 hours Vibe-Coding Hackat…"`, each with a progress bar and a check on the active one.
+- **/dashboard**: campus-ambassador bar ("Want to be a campus ambassador for your college?" + Learn More) → "Your 60-Day Journey", "0 days complete · Day 2 of 60" → 60-tile grid (10 per row) with per-tile tooltip "Day 45: Unlocks on 20 Sep 2026" → legend: On time, Rejected, Missed, Missed - catch up, Future → "Today's Task" (`AI challenge · IST day 2`, Easy, ~60 min, "Your First Python AI Script", Start Today's Challenge) → four stat cards: DAY 2 OF 60 (calendar progress IST from start date), CURRENT STREAK (Longest: 0), DAYS COMPLETED, REFERRALS (code N74HYJ) → "Recent activity / Last 7 submissions".
+- **/challenge/:day** (`?challenge=<id>`): back link to Dashboard, "Today (IST): day 2", title, `Day 2 · AI`, **Context**, **Real-World Impact**, **What to do** bullets, **Submission** bullets, then "Submit your solution" — confirm checkbox, GitHub URL (Optional · +5 synergy), LinkedIn URL (Optional · +8 synergy), "Submit Day 2".
+- **/jobs**: "Open roles from the ABTalks community and partners." Cards with title, company · location, posted date, and a type badge (Full-time / Internship).
+- **/hackathon/dashboard**: "Welcome, <name>" + team badge, "TIME LEFT TO SUBMIT" countdown (days/hrs/min/sec) with the deadline line, then the sponsor/perk block.
+
+Everything above is kept in the same order and with the same labels; only the visual layer, mobile behaviour, and performance change.
+
+## What the homepage PDF contains
 
 The capture is the **homepage of abtalks.in only**. It gives real, verbatim content for:
 
@@ -17,13 +35,14 @@ The capture is the **homepage of abtalks.in only**. It gives real, verbatim cont
 - Testimonials section and four real testimonials (Vivek — IT leader, 20+ years; Lakshay; Rida Khan — AI Enthusiast; Devpal Singh Anand)
 - Footer contact: team@abtalks.in
 
-It contains **no** course detail pages, no lesson lists, and no dashboard screens. So the PDF is the source of truth for the homepage and the program names and descriptions; the existing in-app structures (daily task detail, dashboard, jobs) are preserved, renamed only where the PDF gives the real name.
+The PDF covers the public homepage only. Program names on the dashboard side use the enrollment names from the screenshots (Artificial Intelligence, Claude AI Mastery, ViCODATHON).
 
 ## What changes
 
 ### 1. Content alignment (nothing invented)
-- Replace current track titles with the four real program names and their exact descriptions.
+- Replace current track titles with the real program names from both sources; enrollments use the exact dropdown labels and subtitles.
 - Homepage rebuilt to the real hierarchy: Hero → four program cards → hiring-partners strip → How ABTalks works → Community join → Testimonials → Footer with team@abtalks.in.
+- Dashboard, challenge day page, jobs, and hackathon dashboard rebuilt to the exact module order listed above.
 - Real testimonials replace placeholder quotes.
 - Daily-task, dashboard, and jobs logic stays structurally unchanged.
 
@@ -36,7 +55,7 @@ It contains **no** course detail pages, no lesson lists, and no dashboard screen
 - Dashboard, Profile, and task submission move under an authenticated area; Home and program pages stay public and crawlable.
 
 ### 3. Pages and navigation
-- Routes: `/`, `/courses`, `/courses/$slug`, `/task/$dayId`, `/dashboard`, `/profile` (new), `/jobs`, `/auth`.
+- Routes matching the real site: `/`, `/dashboard`, `/challenge/$day`, `/jobs`, `/hackathon/dashboard`, `/profile` (new), `/auth`, plus the existing `/courses` listing.
 - New **Profile** page: avatar and name, email, referral code, synergy total, current and longest streak, saved programs, sign out.
 - Mobile bottom navigation with exactly four items: Home, Courses, Dashboard, Profile.
 - Header reflects session state: signed out shows Sign in; signed in shows an account menu with sign out.
@@ -54,6 +73,8 @@ It contains **no** course detail pages, no lesson lists, and no dashboard screen
 
 ## Technical notes
 
+- The published site currently returns "Internal server error". Fixing that is step one: missing asset modules (`abt-logo.png`, the four course images, `styles.css?url`) and strict-null issues are breaking the server render.
+
 - Existing typecheck errors need clearing as part of this work: missing asset modules (`abt-logo.png`, the four course images, `styles.css?url`), and strict-null/optional issues in `user-store.ts`, `dashboard.tsx`, `index.tsx`, and `task.$dayId.tsx`.
 
 - Stack stays React + TanStack Start (file-based routing) with Tailwind v4 — the project's fixed stack. Next.js is not available here; SSR, routing, and SEO outcomes are equivalent.
@@ -63,4 +84,4 @@ It contains **no** course detail pages, no lesson lists, and no dashboard screen
 
 ## Open item
 
-If you have the real per-program module and lesson breakdown, send it and I will wire the exact lesson lists in. Until then, program detail pages use the four real programs and the existing day/task structure, without inventing lesson titles.
+The screenshots show day 1–2 content only. Send the full day-by-day task list per track (or more captures) and I will fill in the real briefs; until then only the days visible in the screenshots carry real copy and the rest stay locked as "Future".
