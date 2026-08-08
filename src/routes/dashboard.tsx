@@ -32,11 +32,11 @@ function DashboardPage() {
   const [openFaq, setOpenFaq] = useState<string | null>(null);
   const [selectedTileDay, setSelectedTileDay] = useState<number | null>(null);
 
-  const activeTrack = TRACKS.find((t) => t.id === state.selectedTrack) || TRACKS[0];
+  const activeTrack = TRACKS.find((t) => t.id === state.selectedTrack) ?? TRACKS[0]!;
 
   // Find current day task for active track
   const todayTask =
-    DAILY_TASKS.find((t) => t.trackId === activeTrack.id && t.day === 1) || DAILY_TASKS[0];
+    DAILY_TASKS.find((t) => t.trackId === activeTrack.id && t.day === 1) ?? DAILY_TASKS[0]!;
 
   // Build array of 60 tiles matching the exact 6x10 grid in screenshots
   const tiles: Array<{ day: number; status: DayStatus }> = Array.from({ length: 60 }, (_, i) => {
@@ -124,7 +124,8 @@ function DashboardPage() {
                 </span>
               </div>
               <Link
-                to={`/task/${selectedTileDay}`}
+                to="/task/$dayId"
+                params={{ dayId: String(selectedTileDay) }}
                 className="rounded bg-purple-600 px-3 py-1.5 text-[11px] font-bold text-white hover:bg-purple-500"
               >
                 Start Challenge →
@@ -191,7 +192,8 @@ function DashboardPage() {
               </div>
 
               <Link
-                to="/task/1"
+                to="/task/$dayId"
+                params={{ dayId: "1" }}
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#6366F1] px-6 py-3.5 text-xs font-bold text-white transition-all hover:bg-[#4F46E5] shrink-0 shadow-lg shadow-indigo-900/30"
               >
                 <span>Start Today's Challenge</span>
