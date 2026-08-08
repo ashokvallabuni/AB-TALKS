@@ -90,9 +90,9 @@ export function useUserState() {
           [day]: {
             day,
             completedAt: now,
-            githubUrl,
-            linkedinUrl,
             synergyEarned: earned,
+            ...(githubUrl ? { githubUrl } : {}),
+            ...(linkedinUrl ? { linkedinUrl } : {}),
           },
         },
       };

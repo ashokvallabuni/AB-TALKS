@@ -23,7 +23,7 @@ function TaskWorkspacePage() {
   const navigate = useNavigate();
   const { state, submitDayTask } = useUserState();
 
-  const task = DAILY_TASKS.find((t) => t.day === dayNumber) || DAILY_TASKS[0];
+  const task = DAILY_TASKS.find((t) => t.day === dayNumber) ?? DAILY_TASKS[0]!;
 
   const existingSubmission = state.submissions[dayNumber];
   const [confirmed, setConfirmed] = useState(Boolean(existingSubmission));

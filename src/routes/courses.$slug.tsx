@@ -51,7 +51,7 @@ function CourseDetail() {
   const [active, setActive] = useState(0);
   const done = new Set(completedFor(course.slug));
   const percent = hydrated ? percentFor(course.slug, course.lessons.length) : 0;
-  const lesson = course.lessons[active];
+  const lesson = course.lessons[active] ?? course.lessons[0]!;
   const isSaved = saved.includes(course.slug);
 
   return (
