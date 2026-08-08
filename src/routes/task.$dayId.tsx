@@ -3,6 +3,8 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ArrowLeft, CheckCircle2, Github, Linkedin, Sparkles, Award } from "lucide-react";
 import { useUserState } from "@/lib/user-store";
 import { DAILY_TASKS } from "@/lib/abtalks-data";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 
 export const Route = createFileRoute("/task/$dayId")({
   head: () => ({
@@ -22,8 +24,9 @@ function TaskWorkspacePage() {
   const dayNumber = parseInt(dayId || "1", 10);
   const navigate = useNavigate();
   const { state, submitDayTask } = useUserState();
+  const { user } = useAuth();
 
-  const task = DAILY_TASKS.find((t) => t.day === dayNumber) || DAILY_TASKS[0];
+  const task = DAILY_TASKS.find((t) => t.day === dayNumber) ?? DAILY_TASKS[0]!;
 
   const existingSubmission = state.submissions[dayNumber];
   const [confirmed, setConfirmed] = useState(Boolean(existingSubmission));
@@ -31,12 +34,29 @@ function TaskWorkspacePage() {
   const [linkedinUrl, setLinkedinUrl] = useState(existingSubmission?.linkedinUrl || "");
   const [showCelebration, setShowCelebration] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!confirmed) return;
 
     submitDayTask(dayNumber, githubUrl, linkedinUrl);
     setShowCelebration(true);
+
+    if (user) {
+      let earned = 0;
+      if (githubUrl.trim()) earned += 5;
+      if (linkedinUrl.trim()) earned += 8;
+      await supabase.from("submissions").upsert(
+        {
+          user_id: user.id,
+          track_id: task.trackId,
+          day: dayNumber,
+          github_url: githubUrl.trim() || null,
+          linkedin_url: linkedinUrl.trim() || null,
+          synergy_earned: earned,
+        },
+        { onConflict: "user_id,track_id,day" },
+      );
+    }
   };
 
   return (
