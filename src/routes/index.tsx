@@ -281,21 +281,23 @@ function IndexPage() {
         <div className="relative mt-12 overflow-hidden rounded-2xl border border-white/10 bg-[#0F1422] p-8 sm:p-12">
           <div className="text-purple-400 text-4xl font-serif">“</div>
           <p className="mt-2 text-base sm:text-lg leading-relaxed text-gray-200 italic">
-            {TESTIMONIALS[activeTestimonialIndex].quote}
+            {TESTIMONIALS[activeTestimonialIndex]!.quote}
           </p>
 
           <div className="mt-8 flex items-center justify-between pt-6 border-t border-white/10">
             <div className="flex items-center gap-3">
               <img
-                src={TESTIMONIALS[activeTestimonialIndex].avatar}
-                alt={TESTIMONIALS[activeTestimonialIndex].name}
+                src={TESTIMONIALS[activeTestimonialIndex]!.avatar}
+                alt={TESTIMONIALS[activeTestimonialIndex]!.name}
                 className="h-10 w-10 rounded-full object-cover border border-purple-500/40"
               />
               <div>
                 <p className="font-display text-sm font-bold text-white">
-                  {TESTIMONIALS[activeTestimonialIndex].name}
+                  {TESTIMONIALS[activeTestimonialIndex]!.name}
                 </p>
-                <p className="text-xs text-gray-400">{TESTIMONIALS[activeTestimonialIndex].role}</p>
+                <p className="text-xs text-gray-400">
+                  {TESTIMONIALS[activeTestimonialIndex]!.role}
+                </p>
               </div>
             </div>
 
